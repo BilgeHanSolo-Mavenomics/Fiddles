@@ -1,13 +1,21 @@
 window.testVar = 5;
-window.otherWindow = "";
-window.openNewWindow = function() {
-    let newWindow = window.open("otherWindow.html", '_blank', 'location=no,height=570,width=520,scrollbars=yes,status=yes');
-    newWindow.otherWindow = window;
+window.childWindow = "";
+window.openChildWindow = function(button) {
+    window.myButton = button;
+    let newWindow = window.open("childWindow.html", '_blank', 'location=no,height=570,width=520,scrollbars=yes,status=yes');
+    newWindow.parentWindow = window;
     newWindow.testVar = 6;
-    window.otherWindow = newWindow;
+    newWindow.onbeforeunload = childWindowClosed;
+    window.childWindow = newWindow;
+    window.myButton.disabled = true;
 }
-window.readFromOtherWindow = function() {
+window.readFromChildWindow = function() {
     let whatToRead = document.getElementById("whatToRead").value;
     alert(whatToRead + " is " + window[whatToRead] + " on this doc, " +
-        otherWindow[whatToRead] + " on the other doc.");
+        childWindow[whatToRead] + " on the other doc.");
+}
+window.childWindowClosed = function() {
+    alert("Child closed");
+    window.childWindow = "";
+    window.myButton.disabled = false;
 }

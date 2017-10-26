@@ -6,12 +6,15 @@
 </head>
 
 <body>
-    <button onclick="openNewWindow()">
+    <div>testVar is defined on this window as 5, </div>
+    <div>it is going to be set to 6 on child window </div>
+    <div>as soon as that window opens.</div>
+    <button onclick="openChildWindow(this)">
         Click me!
     </button>
     <input id="whatToRead" type="text" value="testVar">
-    <button onclick="readFromOtherWindow()">
-        Read this variable from other window!
+    <button onclick="readFromChildWindow()">
+        Read this variable from child window!
     </button>
 </body>
 
