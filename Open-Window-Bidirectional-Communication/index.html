@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <script type="text/javascript" src="/js/lib/dummy.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+    <style type="text/css">
+
+    </style>
+    <title></title>
+    <script type="text/javascript">
+    //<![CDATA[
+    window.onload = function() {
+        window.otherWindow;
+        window.openNewWindow = function() {
+            window.testVar = 5;
+            let newWindow = window.open("", '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+            newWindow.document.open();
+            newWindow.document.write(window.document.documentElement.outerHTML);
+            newWindow.otherWindow = window;
+            newWindow.document.close();
+            newWindow.testVar = 6;
+            window.otherWindow = newWindow;
+        }
+
+        window.readFromOtherWindow = function() {
+            let whatToRead = document.getElementById("whatToRead").value;
+            alert(whatToRead + " is " + window[whatToRead] + " on this doc, " +
+                otherWindow[whatToRead] + " on the other doc.");
+        }
+    } //]]>
+    </script>
+</head>
+
+<body>
+    <button onclick="openNewWindow()">
+        Click me!
+    </button>
+    <input id="whatToRead" type="text" value="testVar">
+    <button onclick="readFromOtherWindow()">
+        Read this variable from other window!
+    </button>
+</body>
+
+</html>
